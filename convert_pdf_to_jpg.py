@@ -1,6 +1,8 @@
 import os
 from PIL.Image import Image
 import fitz
+import shutil
+import random
 
 
 def removeFile(filename):
@@ -29,13 +31,13 @@ def extract_images_from_pdf(pdf_path, output_folder):
         removeFile(filepath)
         pix.save(filepath)  # save file
         imageFiles.append(filepath)
-    return imageFiles
 
-def make_floor_plans(pdf_dir = 'in_pdf',output_folder_path = "floor_palns"):
+def make_floor_plans(pdf_dir = 'in_pdf',output_folder_path = "floor_plans",prob=0):
 
     for pdf_file in os.listdir(pdf_dir):
         path = os.path.join(pdf_dir, pdf_file)
-        extract_images_from_pdf(path, output_folder_path)
+        if random.random() > prob:
+            extract_images_from_pdf(path, output_folder_path)
 
 
 def delete_files_in_directory(directory_path):
@@ -54,4 +56,10 @@ def delete_files_in_directory(directory_path):
 
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
+def copy_sur(data_dir = "survey_original",out_dir='data/surveys',prob=0):
+    for file in os.listdir(data_dir):
+        if random.random() > prob:
+            shutil.copy(os.path.join(data_dir, file), os.path.join(out_dir, file))
 

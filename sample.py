@@ -158,7 +158,8 @@ class CNN(neural_net_mixin):
             MaxPooling2D(),
             Flatten(),
             Dense(128, activation='relu'),
-            Dense(num_classes)
+            Dense(64,activation='relu'),
+            Dense(num_classes,activation='softmax')
         ])
 
         self.model.compile(

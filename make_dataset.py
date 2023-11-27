@@ -11,14 +11,30 @@ from convert_pdf_to_jpg import delete_files_in_directory
 
 
 
-def enh(img):
+def enh(img,factor,s=(224,224)):
     if img.mode != 'RGB':
         img = img.convert('RGB')
 
+    img = img.resize(s, Image.ANTIALIAS)
+
     enhancer = ImageEnhance.Sharpness(img)
-    sharpened_img = enhancer.enhance(2.0)  # Adjust the enhancement factor as needed
+    sharpened_img = enhancer.enhance(factor)  # Adjust the enhancement factor as needed
 
     return sharpened_img
+
+
+
+def sharp_and_res(data_dir = "data",factor=5):
+
+    for image_type in os.listdir(data_dir):
+        type_dir = os.path.join(data_dir, image_type)
+        image_files = os.listdir(type_dir)
+
+        for file in image_files:
+            img = Image.open(os.path.join(type_dir, file))
+            img = enh(img,factor)
+            img.save(os.path.join(type_dir, file))
+
 
 def save_to_dataset(data_dir = "data",dataset_dir = "Dataset_original"):
 
@@ -56,22 +72,6 @@ def save_to_dataset(data_dir = "data",dataset_dir = "Dataset_original"):
         test_files = image_files[:num_test]
         validation_files = image_files[num_test:num_test + num_validation]
         train_files = image_files[num_test + num_validation:]
-
-        if image_type == 'surveys':
-            for file in test_files:
-                img = Image.open(os.path.join(type_dir, file))
-                img = enh(img)
-                img.save(os.path.join(test_path, file))
-
-            for file in validation_files:
-                img = Image.open(os.path.join(type_dir, file))
-                img = enh(img)
-                img.save(os.path.join(validation_path, file))  # Save the enhanced image back to the same file path
-
-            for file in train_files:
-                img = Image.open(os.path.join(type_dir, file))
-                img = enh(img)
-                img.save(os.path.join(train_path, file))
 
         ##################################################
 

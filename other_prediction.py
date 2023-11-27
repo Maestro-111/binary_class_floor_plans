@@ -6,8 +6,9 @@ from PIL import Image
 import random
 import shutil
 from convert_pdf_to_jpg import delete_files_in_directory
-
-
+from make_dataset import enh
+from convert_pdf_to_jpg import make_floor_plans
+from convert_pdf_to_jpg import copy_sur
 
 def copy_images(from_dir,to_dir,r=0.5):
 
@@ -28,13 +29,14 @@ def copy_images(from_dir,to_dir,r=0.5):
                 shutil.copy(os.path.join(type_dir, file), new_path)
                 num += 1
 
+def make_test_dir(r):
+    make_floor_plans(pdf_dir = 'in_pdf',output_folder_path='test_data',prob=r)
+    copy_sur(data_dir="survey_original", out_dir='test_data',prob=r)
 
-def preprocess_new_data(file_path, img_height=224, img_width=224):
 
+def preprocess_new_data(file_path, factor, img_height=224, img_width=224):
     img = Image.open(file_path)
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
-    img = img.resize((img_width, img_height))
+    img = enh(img, factor, (img_height,img_width))
     img_array = np.array(img)
     return img_array
 
