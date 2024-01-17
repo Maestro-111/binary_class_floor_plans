@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+in_pdf/  
+survey_original/ 
+other_images/ 
+.idea/ 
+test_data/ 
+Dataset_original/ 
+data/ 
