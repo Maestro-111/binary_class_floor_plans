@@ -100,12 +100,12 @@ def preprocess(factor,clipLimit):
 
     # apply augemenation on each set, for each survey image
 
-    augementation('Dataset/train/surveys',
-                  'Dataset/train/floor_plans', 'surveys')
-    augementation('Dataset/test/surveys',
-                  'Dataset/test/floor_plans', 'surveys')
-    augementation('Dataset/validation/surveys',
-                  'Dataset/validation/floor_plans', 'surveys')
+    augementation('Dataset_original/train/surveys',
+                  'Dataset_original/train/floor_plans', 'surveys')
+    augementation('Dataset_original/test/surveys',
+                  'Dataset_original/test/floor_plans', 'surveys')
+    augementation('Dataset_original/validation/surveys',
+                  'Dataset_original/validation/floor_plans', 'surveys')
 
     print('Done augementation')
 
@@ -220,9 +220,9 @@ def load_dataset_train_preds_chain(load_flag:bool,prep_flag:bool,train_test_flag
     if train_test_flag:
 
         train_dataset, validation_dataset, test_dataset, class_names, num_classes = create_data(
-            "Dataset/train",
-            "Dataset/validation",
-            "Dataset/test")
+            "Dataset_original/train",
+            "Dataset_original/validation",
+            "Dataset_original/test")
 
         with open('class_names.txt', 'w') as file: #write class names in a file
             file.write("floor_plans\n")

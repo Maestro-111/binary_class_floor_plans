@@ -9,7 +9,7 @@ def clear_dirs():
 
     for type_dir in ['train', 'test', 'validation']:
         for type_image in ['floor_plans', 'surveys','other_images']:
-            path = f'Dataset/{type_dir}/{type_image}'
+            path = f'Dataset_original/{type_dir}/{type_image}'
             delete_files_in_directory(directory_path=path)
 
     delete_files_in_directory('test_data')
@@ -24,7 +24,7 @@ def make_up_dirs():
 
     for type_dir in ['train', 'test', 'validation']:
         for type_image in ['floor_plans', 'surveys','other_images']:
-            path = f'Dataset/{type_dir}/{type_image}'
+            path = f'Dataset_original/{type_dir}/{type_image}'
             os.makedirs(path)
 
 

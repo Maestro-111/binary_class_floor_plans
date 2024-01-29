@@ -56,7 +56,7 @@ def sharp_and_res(data_dir = "data",factor=5,clipLimit=7):
                 apply_clahe(os.path.join(type_dir, file),clipLimit) # just give a path
 
 
-def save_to_dataset(data_dir = "data",dataset_dir = "Dataset"):
+def save_to_dataset(data_dir = "data",dataset_dir = "Dataset_original"):
 
     """
     Take images from data_dir and distribute them over the Dataset_original directory in the following way:
