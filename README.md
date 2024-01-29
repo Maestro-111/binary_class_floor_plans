@@ -8,23 +8,15 @@ this repo is for RM floor project.
 - Phase 4 progress 0
 - Phase 5 progress 0
 
-## Binary (Multi Class) Classifier
-- just run the main.py with the corresponding param: pass either 0 or 1 for 'predictions' and for 'training'
-- be sure to establish env var to image dir data. We use 3 for training, one for floorplans, one for other class and one for the surveys, and same 3 for predictions.
-
-env names sample for traning and for predictions (env var are named like this on my side)
-
-floorplan_image_path
-survey_image_path
-other_image_path
-
+## Binary (Multi Class) CNN Classifier - done
+run the main.py in scr/classifer. you can set the whole pipeline or use just the testing mode
 
 
 # Contribute
 * install poetry, see https://python-poetry.org/docs/
 * install dependencies by ```poetry install```
 
-## Floorplan processing (phase 3)
+## Floorplan processing (phase 3) in progres...
 
 - extract address and project name to DB and/or folders
 - read source folder:
